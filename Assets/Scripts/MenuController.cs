@@ -3,9 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    public void StartBtn()
+    [SerializeField]
+    private GameObject ExerciseBrowser;
+    public void ShowLevels(int world)
     {
-        SceneManager.LoadScene("Test");
+        GameManager.Instance.currentWorld = world;
+
     }
     
     
