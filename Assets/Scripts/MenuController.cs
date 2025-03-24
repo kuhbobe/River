@@ -10,6 +10,10 @@ public class MenuController : MonoBehaviour
         GameManager.Instance.currentWorld = world;
 
     }
+
+    public void MainScreen () {
+        SceneManager.LoadScene("Start");
+    }
     
     
 }
