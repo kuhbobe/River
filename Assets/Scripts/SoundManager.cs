@@ -9,9 +9,7 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-
-
-
+        
         if (!PlayerPrefs.HasKey("musicVolume"))
         {
             PlayerPrefs.SetFloat("musicVolume", 1);
