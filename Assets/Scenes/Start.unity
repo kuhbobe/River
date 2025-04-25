@@ -2799,6 +2799,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExerciseBrowser: {fileID: 0}
+  pauseUI: {fileID: 0}
+  mainUIPanel: {fileID: 0}
+  settingsPanel: {fileID: 0}
+  spawner: {fileID: 0}
+  menuButton:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Menu Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 0d3ce356-001b-43ae-8a80-f68f0d3457c0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  leftControllerVisual: {fileID: 0}
+  rightControllerVisual: {fileID: 0}
+  leftGlove: {fileID: 0}
+  rightGlove: {fileID: 0}
 --- !u!114 &641870652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3861,6 +3881,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExerciseBrowser: {fileID: 0}
+  pauseUI: {fileID: 0}
+  mainUIPanel: {fileID: 0}
+  settingsPanel: {fileID: 0}
+  spawner: {fileID: 0}
+  menuButton:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Menu Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a0393838-640d-43f9-997f-4bfefcbeca59
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  leftControllerVisual: {fileID: 0}
+  rightControllerVisual: {fileID: 0}
+  leftGlove: {fileID: 0}
+  rightGlove: {fileID: 0}
 --- !u!114 &862406351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4090,6 +4130,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExerciseBrowser: {fileID: 0}
+  pauseUI: {fileID: 0}
+  mainUIPanel: {fileID: 0}
+  settingsPanel: {fileID: 0}
+  spawner: {fileID: 0}
+  menuButton:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 915e69dd-4f9b-4c84-ac48-d5e43a5f737c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  leftControllerVisual: {fileID: 0}
+  rightControllerVisual: {fileID: 0}
+  leftGlove: {fileID: 0}
+  rightGlove: {fileID: 0}
 --- !u!114 &911811216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4230,6 +4290,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExerciseBrowser: {fileID: 0}
+  pauseUI: {fileID: 0}
+  mainUIPanel: {fileID: 0}
+  settingsPanel: {fileID: 0}
+  spawner: {fileID: 0}
+  menuButton:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Menu Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 5c6e88ed-defb-475d-a725-3de0f9f5369b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  leftControllerVisual: {fileID: 0}
+  rightControllerVisual: {fileID: 0}
+  leftGlove: {fileID: 0}
+  rightGlove: {fileID: 0}
 --- !u!114 &923096713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4735,6 +4815,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExerciseBrowser: {fileID: 641870650}
+  pauseUI: {fileID: 0}
+  mainUIPanel: {fileID: 0}
+  settingsPanel: {fileID: 0}
+  spawner: {fileID: 0}
+  menuButton:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Menu Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 72bf5110-6845-4112-8c56-0c2952f7b07c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  leftControllerVisual: {fileID: 0}
+  rightControllerVisual: {fileID: 0}
+  leftGlove: {fileID: 0}
+  rightGlove: {fileID: 0}
 --- !u!114 &993273678
 MonoBehaviour:
   m_ObjectHideFlags: 0

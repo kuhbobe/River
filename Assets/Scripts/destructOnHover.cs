@@ -8,8 +8,11 @@ public class BallTouchDestroy : MonoBehaviour
     {
         if (other.CompareTag(destroyTag))
         {
+            BallSpawner.score++; // Increment score from BallSpawner
+            Debug.Log("Score: " + BallSpawner.score);
+
             Destroy(gameObject);
-            AudioManager.Instance.PlaySFX("Click");
+            AudioManager.Instance?.PlaySFX("Click");
         }
     }
 }

@@ -17,15 +17,25 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance==null)
+        if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);  
         }
-        else{
-            Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject); 
+            return;
         }
+
+        // Apply saved volume levels here
+        float savedMusicVol = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float savedSFXVol = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        musicSource.volume = savedMusicVol;
+        sfxSource.volume = savedSFXVol;
     }
+
 
     private void Start()
     {

@@ -8,32 +8,49 @@ public class BallSpawner : MonoBehaviour
     public GameObject ballPrefab;
     public Transform playerTransform;
 
-    public float spawnDistance = 1.1f; // closer for arm-length reach
-
-    public float horizontalSpreadAngle = 60f; // total cone angle
+    public float spawnDistance = 1.1f;
+    public float horizontalSpreadAngle = 60f;
     public Vector2 verticalYRange = new Vector2(-0.2f, 0.2f);
-    public Vector2 randomSpawnIntervalRange = new Vector2(1.0f, 3.0f);
+    public Vector2 randomSpawnIntervalRange;
 
+    public float spawnDuration = 20f;
+    private float elapsedTime = 0f;
     private float spawnInterval;
     private float ballLifetime;
     private float timer = 0f;
-    private bool lastSpawnedLeft = false; // tracks last spawn side
-    
+    private bool lastSpawnedLeft = false;
+    private bool scoreSaved = false;
+    public float ElapsedTime => elapsedTime;
+
+
+    public static int score = 0;
 
     private void Start()
     {
         ApplyDifficultySettings();
         ResetSpawnTimer();
+        score = 0; // reset score on start
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
+        elapsedTime += Time.deltaTime;
 
-        if (timer >= spawnInterval)
+        if (elapsedTime <= spawnDuration)
         {
-            SpawnBall();
-            ResetSpawnTimer();
+            timer += Time.deltaTime;
+
+            if (timer >= spawnInterval)
+            {
+                SpawnBall();
+                ResetSpawnTimer();
+            }
+        }
+        else if (!scoreSaved)
+        {
+            PlayerPrefs.SetInt("LastScore", score);
+            PlayerPrefs.Save();
+            scoreSaved = true;
         }
     }
 
@@ -63,34 +80,25 @@ public class BallSpawner : MonoBehaviour
     }
 
     private void SpawnBall()
-{
-    Vector3 headsetPos = playerTransform.position;
+    {
+        Vector3 headsetPos = playerTransform.position;
+        Vector3 flatForward = new Vector3(playerTransform.forward.x, 0, playerTransform.forward.z).normalized;
 
-    // Flatten forward to avoid head tilt issues
-    Vector3 flatForward = new Vector3(playerTransform.forward.x, 0, playerTransform.forward.z).normalized;
+        float armLength = 0.8f;
+        float minAngle = lastSpawnedLeft ? 10f : -horizontalSpreadAngle / 2f;
+        float maxAngle = lastSpawnedLeft ? horizontalSpreadAngle / 2f : -10f;
+        float angleOffset = Random.Range(minAngle, maxAngle);
 
-    float armLength = .8f; // comfortable reach
+        Quaternion sideRotation = Quaternion.Euler(0, angleOffset, 0);
+        Vector3 spawnDirection = sideRotation * flatForward;
 
-    // Angle bias: stronger direction toward left or right depending on last spawn
-    float minAngle = lastSpawnedLeft ? 10f : -horizontalSpreadAngle / 2f;
-    float maxAngle = lastSpawnedLeft ? horizontalSpreadAngle / 2f : -10f;
-    float angleOffset = Random.Range(minAngle, maxAngle);
+        Vector3 spawnPos = headsetPos + spawnDirection * armLength;
+        float verticalOffset = Random.Range(verticalYRange.x, verticalYRange.y);
+        spawnPos.y = headsetPos.y + verticalOffset;
 
-    Quaternion sideRotation = Quaternion.Euler(0, angleOffset, 0);
-    Vector3 spawnDirection = sideRotation * flatForward;
+        GameObject ball = Instantiate(ballPrefab, spawnPos, Quaternion.identity);
+        Destroy(ball, ballLifetime);
 
-    Vector3 spawnPos = headsetPos + spawnDirection * armLength;
-
-    // Slight vertical variation
-    float verticalOffset = Random.Range(verticalYRange.x, verticalYRange.y);
-    spawnPos.y = headsetPos.y + verticalOffset;
-
-    GameObject ball = Instantiate(ballPrefab, spawnPos, Quaternion.identity);
-    Destroy(ball, ballLifetime);
-
-    // Alternate glove side for next spawn
-    lastSpawnedLeft = !lastSpawnedLeft;
-}
-
-
+        lastSpawnedLeft = !lastSpawnedLeft;
+    }
 }
