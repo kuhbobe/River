@@ -10,7 +10,7 @@ public class ExerciseBrowser : MonoBehaviour
 
     // Add your custom level names here. Index 0 = Level 1, Index 1 = Level 2, etc.
     public string[] customLevelNames = {
-        "Climbing",
+        "Mobility",
         "Slicing",
         "Stretch"
     };
