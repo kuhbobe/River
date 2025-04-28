@@ -1,13 +1,21 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System.Collections;
 
 public class PostGameUIManager : MonoBehaviour
 {
+    [Header("UI Elements")]
+    public GameObject startScreenCanvas;
+    public Button startButton;
+    public TextMeshProUGUI startCountdownText;
+    
     public GameObject postGameCanvas;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI difficultyText;
-    public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI highScoreText; 
+    public TextMeshProUGUI previousHighScoreText;
 
+    [Header("Game Components")]
     public BallSpawner ballSpawner;
 
     [Header("Controller/Glove Objects")]
@@ -16,22 +24,83 @@ public class PostGameUIManager : MonoBehaviour
     [SerializeField] private GameObject leftGlove;
     [SerializeField] private GameObject rightGlove;
 
-    private bool shown = false;
+    private bool gameStarted = false;
+    private bool gameFinished = false;
 
-    void Update()
+    private void Start()
     {
-        if (!shown && ballSpawner.ElapsedTime >= ballSpawner.spawnDuration)
+        ballSpawner.enabled = false;
+        startScreenCanvas.SetActive(true);
+        postGameCanvas.SetActive(false);
+        startCountdownText.gameObject.SetActive(false);
+
+        if (leftControllerVisual != null) leftControllerVisual.SetActive(true);
+        if (rightControllerVisual != null) rightControllerVisual.SetActive(true);
+        if (leftGlove != null) leftGlove.SetActive(false);
+        if (rightGlove != null) rightGlove.SetActive(false);
+
+        if (startButton != null)
         {
-            ShowPostGameUI();
-            shown = true;
+            startButton.onClick.AddListener(OnStartButtonPressed);
+        }
+
+        // 🔥 Set initial high score on start screen
+        int previousHigh = PlayerPrefs.GetInt("HighScore", 0);
+        if (previousHighScoreText != null)
+        {
+            previousHighScoreText.text = "High Score: " + previousHigh;
         }
     }
 
-    void ShowPostGameUI()
+    private void Update()
+    {
+        if (!gameStarted)
+            return;
+
+        if (!gameFinished && ballSpawner.ElapsedTime >= ballSpawner.spawnDuration)
+        {
+            ShowPostGameUI();
+            gameFinished = true;
+        }
+    }
+
+    private void OnStartButtonPressed()
+    {
+        if (!gameStarted)
+        {
+            StartCoroutine(StartGameFlow());
+        }
+    }
+
+    private IEnumerator StartGameFlow()
+    {
+        gameStarted = true;
+        startButton.gameObject.SetActive(false);
+        startCountdownText.gameObject.SetActive(true);
+
+        if (leftControllerVisual != null) leftControllerVisual.SetActive(false);
+        if (rightControllerVisual != null) rightControllerVisual.SetActive(false);
+        if (leftGlove != null) leftGlove.SetActive(true);
+        if (rightGlove != null) rightGlove.SetActive(true);
+
+        string[] countdownNumbers = { "3", "2", "1", "GO!" };
+        foreach (string number in countdownNumbers)
+        {
+            startCountdownText.text = number;
+            yield return new WaitForSeconds(1f);
+        }
+
+        startCountdownText.gameObject.SetActive(false);
+        startScreenCanvas.SetActive(false);
+
+        ballSpawner.enabled = true;
+        ballSpawner.StartGame();
+    }
+
+    private void ShowPostGameUI()
     {
         int finalScore = BallSpawner.score;
 
-        // Update high score
         int previousHigh = PlayerPrefs.GetInt("HighScore", 0);
         if (finalScore > previousHigh)
         {
@@ -39,18 +108,14 @@ public class PostGameUIManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        // Fill out UI fields
         scoreText.text = "Final Score: " + finalScore;
-        difficultyText.text = "Difficulty: " + ballSpawner.currentDifficulty;
         highScoreText.text = "High Score: " + Mathf.Max(previousHigh, finalScore);
 
-        // Show controllers, hide gloves
         if (leftControllerVisual != null) leftControllerVisual.SetActive(true);
         if (rightControllerVisual != null) rightControllerVisual.SetActive(true);
         if (leftGlove != null) leftGlove.SetActive(false);
         if (rightGlove != null) rightGlove.SetActive(false);
 
-        // Show the post-game UI
         postGameCanvas.SetActive(true);
     }
 }

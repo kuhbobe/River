@@ -3,7 +3,7 @@ using UnityEngine;
 public class BallSpawner : MonoBehaviour
 {
     public enum Difficulty { Easy, Medium, Hard }
-    public Difficulty currentDifficulty = Difficulty.Medium;
+    public Difficulty currentDifficulty = Difficulty.Hard;
 
     public GameObject ballPrefab;
     public Transform playerTransform;
@@ -13,7 +13,7 @@ public class BallSpawner : MonoBehaviour
     public Vector2 verticalYRange = new Vector2(-0.2f, 0.2f);
     public Vector2 randomSpawnIntervalRange;
 
-    public float spawnDuration = 20f;
+    public float spawnDuration = 60f;
     private float elapsedTime = 0f;
     private float spawnInterval;
     private float ballLifetime;
@@ -27,10 +27,19 @@ public class BallSpawner : MonoBehaviour
 
     private void Start()
     {
-        ApplyDifficultySettings();
-        ResetSpawnTimer();
-        score = 0; // reset score on start
+
     }
+
+    public void StartGame()
+{
+    elapsedTime = 0f;
+    timer = 0f;
+    score = 0;
+    scoreSaved = false;
+    ApplyDifficultySettings();
+    ResetSpawnTimer();
+}
+
 
     private void Update()
     {
