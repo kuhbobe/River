@@ -14,7 +14,7 @@ public class ZDistanceTracker : MonoBehaviour
 
     private void Start()
     {
-        // Disable at start, only activated when game starts
+
         enabled = false;
     }
 

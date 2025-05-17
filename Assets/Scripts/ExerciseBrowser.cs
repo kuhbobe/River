@@ -8,7 +8,7 @@ public class ExerciseBrowser : MonoBehaviour
     public GameObject buttonPrefab;
     public GameObject buttonParent;
 
-    // Add your custom level names here. Index 0 = Level 1, Index 1 = Level 2, etc.
+  
     public string[] customLevelNames = {
         "Mobility",
         "Slicing",

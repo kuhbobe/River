@@ -6,15 +6,15 @@ public class GameUIManager : MonoBehaviour
     [Header("UI Elements")]
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timerText;
-    public TextMeshProUGUI climbingText; // 🧗 Add climbing display
+    public TextMeshProUGUI climbingText; 
 
     [Header("Game Components")]
-    public BallSpawner ballSpawner; // Reference to BallSpawner
+    public BallSpawner ballSpawner; 
     public ZDistanceTracker distanceTracker;
 
-    public Transform playerTransform; // Reference to player's Main Camera (headset)
+    public Transform playerTransform; 
 
-    private float initialZ = 0f; // Starting Z position
+    private float initialZ = 0f; 
 
     private void Start()
     {
@@ -72,7 +72,7 @@ public class GameUIManager : MonoBehaviour
         if (climbingText != null && playerTransform != null)
         {
             float climbedDistance = playerTransform.position.y - initialZ;
-            climbedDistance = Mathf.Max(0f, climbedDistance); // Don't show negative climb
+            climbedDistance = Mathf.Max(0f, climbedDistance); 
             climbingText.text = "Climb: " + climbedDistance.ToString("F2") + "m";
         }
     }

@@ -8,7 +8,7 @@ public class BallTouchDestroy : MonoBehaviour
     {
         if (other.CompareTag(destroyTag))
         {
-            BallSpawner.score++; // Increment score from BallSpawner
+            BallSpawner.score++; 
             Debug.Log("Score: " + BallSpawner.score);
 
             Destroy(gameObject);

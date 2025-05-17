@@ -7,7 +7,7 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        // Load and apply saved volume settings
+        
         float savedMusicVol = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float savedSFXVol = PlayerPrefs.GetFloat("SFXVolume", 1f);
 

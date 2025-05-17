@@ -25,10 +25,10 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject rightGlove;
 
     [Header("Gameplay Objects")]
-    [SerializeField] private GameObject climbing; // <-- NEW climbing GameObject
+    [SerializeField] private GameObject climbing; 
 
     [Header("Player")]
-    [SerializeField] private Transform xrRigTransform; // <-- NEW
+    [SerializeField] private Transform xrRigTransform; 
 
 
     private bool isPaused = false;
@@ -60,21 +60,21 @@ public class MenuController : MonoBehaviour
         if (spawner != null)
             spawner.enabled = !isPaused;
 
-        // Handle climbing visibility
+    
         if (climbing != null)
-            climbing.SetActive(!isPaused); // Hide climbing when paused, show when unpaused
+            climbing.SetActive(!isPaused); 
 
-        // Show controller models when paused, gloves when unpaused
+        
         if (leftControllerVisual != null) leftControllerVisual.SetActive(isPaused);
         if (rightControllerVisual != null) rightControllerVisual.SetActive(isPaused);
         if (leftGlove != null) leftGlove.SetActive(!isPaused);
         if (rightGlove != null) rightGlove.SetActive(!isPaused);
 
-        // Reset UI panels when resuming
+      
         if (!isPaused)
         {
-            if (mainUIPanel != null) mainUIPanel.SetActive(true);     // Default back to main menu
-            if (settingsPanel != null) settingsPanel.SetActive(false); // Hide other panels
+            if (mainUIPanel != null) mainUIPanel.SetActive(true);    
+            if (settingsPanel != null) settingsPanel.SetActive(false); 
         }
 
         if (xrRigTransform != null)

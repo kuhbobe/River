@@ -7,12 +7,12 @@ public class SkyboxDropdownHandler : MonoBehaviour
 
     void Start()
     {
-        // Optional: Set dropdown value to current skybox index
+       
         int currentIndex = SkyboxManager.Instance.GetCurrentSkyboxIndex();
         skyboxDropdown.value = currentIndex;
         skyboxDropdown.RefreshShownValue();
 
-        // Add listener
+     
         skyboxDropdown.onValueChanged.AddListener(OnDropdownChanged);
     }
 

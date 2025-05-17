@@ -19,7 +19,7 @@ public class SkyboxManager : MonoBehaviour
             currentIndex = PlayerPrefs.GetInt("SkyboxIndex", 0);
             ApplySkybox(currentIndex);
 
-            // Listen for new scenes
+          
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -35,7 +35,7 @@ public class SkyboxManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Re-apply the current skybox
+       
         ApplySkybox(currentIndex);
     }
 

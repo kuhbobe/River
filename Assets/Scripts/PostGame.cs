@@ -44,7 +44,7 @@ public class PostGameUIManager : MonoBehaviour
             startButton.onClick.AddListener(OnStartButtonPressed);
         }
 
-        // 🔥 Set initial high score on start screen
+      
         int previousHigh = PlayerPrefs.GetInt("HighScore", 0);
         if (previousHighScoreText != null)
         {

@@ -101,7 +101,7 @@ public class ZPostGameUIManager : MonoBehaviour
         highScoreText.text = "High Score: " + Mathf.FloorToInt(Mathf.Max(previousHigh, finalScore));
 
     
-        // Reset player position to z=0
+       
         if (playerTransform != null)
         {
             playerTransform.position = Vector3.zero;

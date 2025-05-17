@@ -4,7 +4,7 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+   
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // Apply saved volume levels here
+     
         float savedMusicVol = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float savedSFXVol = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
